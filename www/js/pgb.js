@@ -50,3 +50,20 @@ $.get(channels[0][0], function (data) {
 
   });
 });
+
+//ROZRYWKA
+$.get(channels[0][4], function (data) {
+  // var a = $(data).find("channel");  
+  // $('#channelTitle').append(a.find('title').first().text());
+
+  $(data).find("item").each(function () {
+    var el = $(this);
+    
+  	$('#rozrywka').append([
+	  { link: el.find("link").text(), title: el.find("title").text(), description: el.find("description").text() }
+	].map(Item).join(''));
+
+    // $( "#biznes" ).append( el.find("title").text() );
+
+  });
+});
