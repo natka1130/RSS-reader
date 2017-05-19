@@ -84,3 +84,20 @@ $.get(channels[2][1], function (data) {
 
   });
 });
+
+//BIZNES
+$.get(channels[2][2], function (data) {
+  // var a = $(data).find("channel");  
+  // $('#channelTitle').append(a.find('title').first().text());
+
+  $(data).find("item").each(function () {
+    var el = $(this);
+    
+  	$('#biznes').append([
+	  { link: el.find("link").text(), title: el.find("title").text(), description: el.find("description").text() }
+	].map(Item).join(''));
+
+    // $( "#biznes" ).append( el.find("title").text() );
+
+  });
+});
