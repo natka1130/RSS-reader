@@ -19,3 +19,11 @@ var channels = [
 	["http://www.rmf24.pl/fakty/polska/feed","http://www.rmf24.pl/fakty/swiat/feed","http://www.rmf24.pl/sport/feed","http://www.rmf24.pl/ekonomia/feed","http://www.rmf24.pl/ekonomia/feed"],
 	["http://www.polsatnews.pl/rss/kraj.xml","http://www.polsatnews.pl/rss/kraj.xml","http://www.polsatnews.pl/rss/kraj.xml","http://www.polsatnews.pl/rss/kraj.xml","http://www.polsatnews.pl/rss/rozrywka.xml"]
 ]
+
+//Szablon dodawania pojedyńczego newsa na stronie
+const Item = ({ title, link, description }) => `
+    <div class="item">
+      <h3>${title}</h3>
+      <span class="item-description">${description} <a href="${link}" class="item-link">więcej..</a></span>
+    </div>
+`;
