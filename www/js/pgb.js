@@ -101,3 +101,20 @@ $.get(channels[2][2], function (data) {
 
   });
 });
+
+//SPORT
+$.get(channels[2][3], function (data) {
+  // var a = $(data).find("channel");  
+  // $('#channelTitle').append(a.find('title').first().text());
+
+  $(data).find("item").each(function () {
+    var el = $(this);
+    
+  	$('#sport').append([
+	  { link: el.find("link").text(), title: el.find("title").text(), description: el.find("description").text() }
+	].map(Item).join(''));
+
+    // $( "#biznes" ).append( el.find("title").text() );
+
+  });
+});
