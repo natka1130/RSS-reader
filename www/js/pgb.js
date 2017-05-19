@@ -27,3 +27,26 @@ const Item = ({ title, link, description }) => `
       <span class="item-description">${description} <a href="${link}" class="item-link">więcej..</a></span>
     </div>
 `;
+
+
+//Pobranie i wyciąganie newsów z XML kanału wiadomości
+var loadChannels = function() {
+
+}
+
+//Informacje z kraju
+$.get(channels[0][0], function (data) {
+  // var a = $(data).find("channel");  
+  // $('#channelTitle').append(a.find('title').first().text());
+
+  $(data).find("item").each(function () {
+    var el = $(this);
+    
+  	$('#zkraju').append([
+	  { link: el.find("link").text(), title: el.find("title").text(), description: el.find("description").text() }
+	].map(Item).join(''));
+
+    // $( "#biznes" ).append( el.find("title").text() );
+
+  });
+});
