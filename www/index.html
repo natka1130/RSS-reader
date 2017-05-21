@@ -2,11 +2,16 @@
 <html>
 	<head>
 		<meta http-equiv="Content-type" content="text/html; charset=utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-		<script src="cordova.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!--   <script src="cordova.js"></script> -->
 		<link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css" />
+    <script src="https://www.gstatic.com/firebasejs/4.0.0/firebase.js"></script>
+    <link rel="stylesheet" href="css/style.css">
 		<script src="js/jquery-2.1.4.min.js"></script>
-		<script src="js/jquery.mobile-1.4.5.min.js"></script>        
+    <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+
+		<script src="js/jquery.mobile.custom.js"></script>        
 		<script src="js/pgb.js"></script>
 	</head>
 	<body onload="init()">
@@ -19,14 +24,16 @@
 		  <div data-role="main" class="ui-content">
 			<h2>Logowanie: </h2>
 			
-		      <label for="text-basic">Login:</label>
-              <input type="text" name="user-name" id="username" value="">
+		      <label for="text-basic">E-mail:</label>
+              <input type="text" name="user-name" id="txtEmail" value="">
               <label for="text-basic">Hasło:</label>
-              <input type="text" name="user-password" id="userpasswd" value="">
-              <a href="#registration" class="ui-btn ui-btn-inline ui-corner-all ui-shadow">Zarejestruj</a>
-              <a href="#userpanel" class="ui-btn ui-btn-inline ui-corner-all ui-shadow" >Zaloguj</a>              
+              <input type="password" name="user-password" id="txtPassword" value="">
+              <!-- <a href="#registration" class="ui-btn ui-btn-inline ui-corner-all ui-shadow">Zarejestruj</a> -->
+              <a id="btnLogin" class="ui-btn ui-btn-inline ui-corner-all ui-shadow" >Zaloguj</a> 
+               <button id="btnSignUp" class="ui-btn ui-btn-inline ui-corner-all ui-shadow">Sign Up</button>  
+            <!--  <button id="btnLogOut" class="ui-btn ui-btn-inline ui-corner-all ui-shadow">Log Out</button>     -->     
               
-            </div>
+      </div>
 		  <div data-role="footer" data-position="fixed">
 			<h1>(c) Natalia Lewczuk & Sebastian Kuśnierz</h1>
 		  </div> 
@@ -37,37 +44,38 @@
 		<div data-role="page" id="userpanel">
 			<div data-role="header" data-theme="a">
                 <a href="#settings" class="ui-btn ui-btn-inline ui-icon-delete ui-btn-icon-right">Ustawienia</a>
-                <a href="#pageone" class="ui-btn ui-btn-inline ui-icon-delete ui-btn-icon-right">Wyloguj</a>
+                <button id="btnLogOut" class="ui-btn ui-btn-inline ui-corner-all ui-shadow">Log Out</button>
+                <!-- <a href="#pageone" class="ui-btn ui-btn-inline ui-icon-delete ui-btn-icon-right">Wyloguj</a> -->
 				<h1>RSS - Panel użytkownia</h1>
                 
 			</div>
 			<div role="main" class="ui-content">
 				<div data-role="tabs" id="tabs">
-                      <div data-role="navbar">
-                        <ul>
-                          <li><a href="#zkraju" data-ajax="false">Z kraju</a></li>
-                          <li><a href="#zeswiata" data-ajax="false">Ze świata</a></li>
-                          <li><a href="#sport" data-ajax="false">Sport</a></li>
-                          <li><a href="#biznes" data-ajax="false">Biznes</a></li>
-                          <li><a href="#rozrywka" data-ajax="false">Rozrywka</a></li>
-                        </ul>
-                      </div>
-                      <div id="zkraju" class="ui-body-d ui-content">
-                        <h1>Wiadomości z kraju:</h1>
-                      </div>
-                      <div id="zeswiata">
-                        <h1>Wiadomości ze świata:</h1>
-                      </div>
-                      <div id="sport">
-                        <h1>Wiadomości sportowe:</h1>
-                      </div>
-                      <div id="biznes">
-                        <h1>Wiadomości biznesowe:</h1>
-                      </div>
-                      <div id="rozrywka">
-                        <h1>Rozrywka:</h1>
-                      </div>
-                    </div>
+          <div data-role="navbar">
+            <ul>
+              <li><a href="#zkraju" data-ajax="false">Z kraju</a></li>
+              <li><a href="#zeswiata" data-ajax="false">Ze świata</a></li>
+              <li><a href="#sport" data-ajax="false">Sport</a></li>
+              <li><a href="#biznes" data-ajax="false">Biznes</a></li>
+              <li><a href="#rozrywka" data-ajax="false">Rozrywka</a></li>
+            </ul>
+          </div>
+          <div id="zkraju" class="ui-body-d ui-content">
+            <h1>Wiadomości z kraju:</h1>
+          </div>
+          <div id="zeswiata">
+            <h1>Wiadomości ze świata:</h1>
+          </div>
+          <div id="sport">
+            <h1>Wiadomości sportowe:</h1>
+          </div>
+          <div id="biznes">
+            <h1>Wiadomości biznesowe:</h1>
+          </div>
+          <div id="rozrywka">
+            <h1>Rozrywka:</h1>
+          </div>
+        </div>
                 
                 
 			</div>
@@ -83,19 +91,23 @@
 				<h1>RSS - Rejestrowanie użytkownika</h1>
                 
 			</div>
+
 			<div role="main" class="ui-content">
 				<h2>Formularz rejestracyjny: </h2>
-			      <label for="text-basic">E-mail:</label>
-                  <input type="text" name="e-mail" id="email" value="">
-                  <label for="text-basic">Login:</label>
-                  <input type="text" name="login" id="login" value="">
-                  <label for="text-basic">Hasło:</label>
-                  <input type="text" name="password" id="passwd" value="">
-                  <a href="#pageone" class="ui-btn ui-btn-inline ui-corner-all ui-shadow">Zarejestruj</a>
+              <label for="text-basic">Email:</label>
+              <input type="text" name="user-name" id="txtEmail" value="">
+              <label for="text-basic">Hasło:</label>
+              <input type="password" name="user-password" id="txtPassword" value="">
+
+                <button id="btnSignUp">Sign Up</button> 
+
+
+
 
 			</div>
-             <div data-role="footer" data-position="fixed">
-			<h1>(c) Natalia Lewczuk & Sebastian Kuśnierz</h1>
+
+      <div data-role="footer" data-position="fixed">
+			     <h1>(c) Natalia Lewczuk & Sebastian Kuśnierz</h1>
 		  </div> 
 		</div>
 		<!-- settings -->
@@ -166,11 +178,52 @@
                 </select>
                 
                 <a href="#userpanel" class="ui-btn ui-btn-inline">Przejdź do panelu użytkowniaka</a>
+                <button id="saveChannels" class="ui-btn ui-btn-inline">zapisz</button>
 			</div>
              <div data-role="footer" data-position="fixed">
 			<h1>(c) Natalia Lewczuk & Sebastian Kuśnierz</h1>
 		  </div> 
 		</div>
-        
+    <script src="js/auth.js">
+/*    // zmienne dla elementów ze strony z ktorych pobierane sa wartpssci dla logowania i rejestracji
+      var socket = io();
+
+      var signInButton = document.getElementById('signInBtn');
+      var signInUsername = document.getElementById('userName');
+      var signInUserPassword = document.getElementById('userPassword');
+
+      var signUpUsername = document.getElementById('login');
+      var signUpUserPassword = document.getElementById('passwd');
+      var signUpuserEmail = document.getElementById('email');
+      var signUpButton = document.getElementById('signUpBtn');
+
+
+      // wysylanie przt logowaniu
+      signInButton.onclick = function() {
+        socket.emit('signIn', {username: signInUsername.value, password: signInUserPassword.value});
+      }
+      // wysylanie przt rejestracji
+      signUpButton.onclick = function() {
+        socket.emit('signUp', {username: signUpUsername.value, password: signUpUserPassword.value, email: signUpuserEmail.value});
+      }
+    // (socket.io) 
+      socket.on('signInResponse', function(data) {
+        if(data.success) {
+          alert('logged');
+          console.log(data);
+        } else {
+          alert('unsuccesful');
+          console.log(data);
+        }
+      });
+      socket.on('signUpResponse', function(data) {
+        if(data.success) {
+          alert('succesful');
+        } else {
+          alert('unsuccesful');
+        }
+      });
+*/
+    </script>
 	</body>
 </html>
