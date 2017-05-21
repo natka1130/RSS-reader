@@ -64,9 +64,7 @@
 <plugin spec="https://github.com/apache/cordova-plugin-network-information.git" source="git" />
   <preference name="UIWebViewDecelerationSpeed" value="normal" />
 
-  <preference name="monaca:AndroidIsPackageNameSeparate" value="false"/>
-  <preference name="monaca:targetFamilyiPhone" value="1"/>
-  <preference name="monaca:targetFamilyiPad" value="1"/>
+
   <plugin spec="https://github.com/apache/cordova-plugin-device-motion.git" source="git" />
 	<plugin name="cordova-plugin-device" spec="~1.1.4" />
 	<plugin name="cordova-plugin-dialogs" spec="~1.3.1" />
