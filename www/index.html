@@ -3,7 +3,8 @@
 	<head>
 		<meta http-equiv="Content-type" content="text/html; charset=utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-		<script src="cordova.js"></script>
+     <script src="https://www.gstatic.com/firebasejs/4.0.0/firebase.js"></script>   
+	<!--   <script src="cordova.js"></script> -->
 		<link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css" />
 		<script src="js/jquery-2.1.4.min.js"></script>
 		<script src="js/jquery.mobile-1.4.5.min.js"></script>        
@@ -19,12 +20,14 @@
 		  <div data-role="main" class="ui-content">
 			<h2>Logowanie: </h2>
 			
-		      <label for="text-basic">Login:</label>
-              <input type="text" name="user-name" id="username" value="">
+          <label for="text-basic">E-mail:</label>
+              <input type="text" name="user-name" id="txtEmail" value="">
               <label for="text-basic">Hasło:</label>
-              <input type="text" name="user-password" id="userpasswd" value="">
-              <a href="#registration" class="ui-btn ui-btn-inline ui-corner-all ui-shadow">Zarejestruj</a>
-              <a href="#userpanel" class="ui-btn ui-btn-inline ui-corner-all ui-shadow" >Zaloguj</a>              
+              <input type="password" name="user-password" id="txtPassword" value="">
+              <!-- <a href="#registration" class="ui-btn ui-btn-inline ui-corner-all ui-shadow">Zarejestruj</a> -->
+              <a id="btnLogin" class="ui-btn ui-btn-inline ui-corner-all ui-shadow" >Zaloguj</a> 
+               <button id="btnSignUp" class="ui-btn ui-btn-inline ui-corner-all ui-shadow">Zarejestruj</button>  
+            <!--  <button id="btnLogOut" class="ui-btn ui-btn-inline ui-corner-all ui-shadow">Log Out</button>     -->             
               
             </div>
 		  <div data-role="footer" data-position="fixed">
@@ -35,10 +38,11 @@
 		        
         <!-- User panel -->
 		<div data-role="page" id="userpanel">
-			<div data-role="header" data-theme="a">
+      <div data-role="header" data-theme="a">
                 <a href="#settings" class="ui-btn ui-btn-inline ui-icon-delete ui-btn-icon-right">Ustawienia</a>
-                <a href="#pageone" class="ui-btn ui-btn-inline ui-icon-delete ui-btn-icon-right">Wyloguj</a>
-				<h1>RSS - Panel użytkownia</h1>
+                <button id="btnLogOut" class="ui-btn ui-btn-inline ui-corner-all ui-shadow">Wyloguj</button>
+                <!-- <a href="#pageone" class="ui-btn ui-btn-inline ui-icon-delete ui-btn-icon-right">Wyloguj</a> -->
+        <h1>RSS - Panel użytkownia</h1>
                 
 			</div>
 			<div role="main" class="ui-content">
@@ -171,6 +175,6 @@
 			<h1>(c) Natalia Lewczuk & Sebastian Kuśnierz</h1>
 		  </div> 
 		</div>
-        
+       <script src="js/auth.js"></script>     
 	</body>
 </html>

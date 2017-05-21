@@ -6,8 +6,8 @@
 
     <name>Czytnik RSS</name>
     <description>Program do czytania kanałów RSS</description>
-    <author  email="n.lewczuk@gmail.com">
-		Natalia Lewczuk
+    <author  email="n.lewczuk@gmail.com" email2="kusnierz.sebastian@gmail.com">
+		Natalia Lewczuk, Sebastian Kuśnierz
 	</author>
         
     <!-- test--> 
